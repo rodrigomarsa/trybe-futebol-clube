@@ -1,12 +1,14 @@
 import * as express from 'express';
+import teamsRouter from './routes/teamsRouter';
+// import loginRouter from './routes/loginRouter';
 
 class App {
   public app: express.Express;
 
   constructor() {
     this.app = express();
-
     this.config();
+    this.routes();
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
@@ -22,6 +24,11 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
+  }
+
+  public routes(): void {
+    this.app.use(teamsRouter);
+    // this.app.use(loginRouter);
   }
 
   public start(PORT: string | number):void {

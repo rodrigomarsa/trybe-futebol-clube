@@ -10,15 +10,17 @@ export default class UserService implements IUserService {
   async login(login: IUser): Promise<string | null> {
     UserValidations.validateUser(login);
     const user = await this.model.findOne({ where: { email: login.email } });
-    if (!user) {
+    if (!user || !authFunctions.verifyBcrypt(login.password, user.password)) {
       throw new UnauthorizedError('Invalid email or password');
     }
-    const decoded = authFunctions.verifyBcrypt(login.password, user.password);
-    if (!decoded) {
-      throw new UnauthorizedError('Invalid email or password');
-    }
-    const { id, username } = user as IUserWithId;
-    const token = authFunctions.createJwt({ id, username });
+    const { id, username, role } = user as IUserWithId;
+    const token = authFunctions.createJwt({ id, username, role });
     return token;
+  }
+
+  async getRole(payload: IUser): Promise<string | null> {
+    await this.model.findOne({ where: { username: payload.username } });
+    const { role } = payload;
+    return role;
   }
 }

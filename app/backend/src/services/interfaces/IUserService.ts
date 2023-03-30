@@ -15,5 +15,6 @@ export interface ILogin {
 }
 
 export default interface IUserService {
-  login(login: ILogin): Promise<string | null>;
+  login(login: IUser): Promise<string | null>
+  getRole(payload: Omit<IUser, 'password' | 'email'>): Promise<string | null>
 }

@@ -18,4 +18,14 @@ export default class UserController implements IUserController {
       next(error);
     }
   };
+
+  getRole = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    const payload = req.user;
+    try {
+      const role = await this.userService.getRole(payload);
+      return res.status(200).json({ role });
+    } catch (error) {
+      next(error);
+    }
+  };
 }

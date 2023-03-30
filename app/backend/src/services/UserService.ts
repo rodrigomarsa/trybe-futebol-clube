@@ -17,10 +17,4 @@ export default class UserService implements IUserService {
     const token = authFunctions.createJwt({ id, username, role });
     return token;
   }
-
-  async getRole(payload: IUser): Promise<string | null> {
-    await this.model.findOne({ where: { username: payload.username } });
-    const { role } = payload;
-    return role;
-  }
 }

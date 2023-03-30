@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import BadRequestError from '../errors/BadRequestError';
 
 const requestRequiredFields = {
   user: ['username', 'email', 'password'],
@@ -10,7 +11,7 @@ const verifyRequiredFields = (key: keyof typeof requestRequiredFields) =>
     const requiredFields = requestRequiredFields[key];
     for (let i = 0; i < requiredFields.length; i += 1) {
       if (!req.body[requiredFields[i]]) {
-        return res.status(400).json({ message: 'All fields must be filled' });
+        throw new BadRequestError('All fields must be filled');
       }
     }
 

@@ -9,7 +9,6 @@ const router = Router();
 
 const userService = new UserService(UserModel);
 const userController = new UserController(userService);
-// const validateToken = new ValidateToken();
 
 router
   .post('/login', verifyRequiredFields('login'), userController.login)

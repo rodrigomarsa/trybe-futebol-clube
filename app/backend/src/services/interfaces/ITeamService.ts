@@ -1,12 +1,12 @@
-export interface Team {
+export interface ITeam {
   teamName: string;
 }
 
-export interface TeamWithId extends Team {
+export interface ITeamWithId extends ITeam {
   id: number;
 }
 
 export default interface ITeamService {
-  getAll(): Promise<TeamWithId[] | void>;
-  getById(id: string): Promise<TeamWithId | null>;
+  getAll(): Promise<ITeamWithId[] | void>;
+  getById(id: string): Promise<ITeamWithId | null>;
 }

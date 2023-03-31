@@ -11,6 +11,7 @@ const matchController = new MatchController(matchService);
 
 router
   .get('/matches', matchController.getAll)
-  .patch('/matches/:id/finish', ValidateToken.verifyToken, matchController.updateProgress);
+  .patch('/matches/:id/finish', ValidateToken.verifyToken, matchController.updateProgress)
+  .patch('/matches/:id', ValidateToken.verifyToken, matchController.updateScore);
 
 export default router;

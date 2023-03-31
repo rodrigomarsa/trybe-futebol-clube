@@ -14,4 +14,5 @@ export default interface IMatchService {
   getAll(): Promise<IMatchWithId[] | void>;
   getByProgress(inProgress: boolean): Promise<IMatchWithId[] | void>;
   updateProgress(id: number): Promise<void>;
+  updateScore(id: number, data: object): Promise<void>;
 }

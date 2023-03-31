@@ -8,19 +8,21 @@ export default class Matches extends Model<InferAttributes<Matches>> {
   declare homeTeamGoals: number;
   declare awayTeamId: number;
   declare awayTeamGoals: number;
+  declare inProgress: boolean;
 }
 
 Matches.init({
   id: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
   },
-  homeTeamId: DataTypes.NUMBER,
-  homeTeamGoals: DataTypes.NUMBER,
-  awayTeamId: DataTypes.NUMBER,
-  awayTeamGoals: DataTypes.NUMBER,
+  homeTeamId: DataTypes.INTEGER,
+  homeTeamGoals: DataTypes.INTEGER,
+  awayTeamId: DataTypes.INTEGER,
+  awayTeamGoals: DataTypes.INTEGER,
+  inProgress: DataTypes.BOOLEAN,
 }, {
   underscored: true,
   sequelize: db,
@@ -28,5 +30,8 @@ Matches.init({
   timestamps: false,
 });
 
-Teams.belongsTo(Matches, { foreignKey: 'home_team_id', as: 'homeTeam' });
-Teams.belongsTo(Matches, { foreignKey: 'away_team_id', as: 'awayTeam' });
+Teams.hasMany(Matches, { foreignKey: 'homeTeamId', as: 'teamHome' });
+Teams.hasMany(Matches, { foreignKey: 'awayTeamId', as: 'teamAway' });
+
+Matches.belongsTo(Teams, { foreignKey: 'homeTeamId', as: 'homeTeam' });
+Matches.belongsTo(Teams, { foreignKey: 'awayTeamId', as: 'awayTeam' });

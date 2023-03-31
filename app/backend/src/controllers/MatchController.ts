@@ -23,4 +23,18 @@ export default class MatchController implements IMatchController {
       next(error);
     }
   };
+
+  updateProgress = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> => {
+    const { id } = req.params;
+    try {
+      await this.matchService.updateProgress(Number(id));
+      return res.status(200).json({ message: 'Finished' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }

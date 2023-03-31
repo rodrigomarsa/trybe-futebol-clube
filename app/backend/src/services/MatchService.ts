@@ -21,4 +21,8 @@ export default class MatchService implements IMatchService {
       ] });
     return filteredMatch;
   }
+
+  async updateProgress(id: number): Promise<void> {
+    await this.model.update({ inProgress: false }, { where: { id } });
+  }
 }

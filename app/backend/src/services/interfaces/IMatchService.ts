@@ -13,4 +13,5 @@ export interface IMatchWithId extends IMatch {
 export default interface IMatchService {
   getAll(): Promise<IMatchWithId[] | void>;
   getByProgress(inProgress: boolean): Promise<IMatchWithId[] | void>;
+  updateProgress(id: number): Promise<void>;
 }

@@ -46,7 +46,20 @@ export default class MatchController implements IMatchController {
     const { id } = req.params;
     try {
       await this.matchService.updateScore(Number(id), req.body);
-      return res.status(200).json({ message: 'Finished' });
+      return res.status(200).json({ message: 'Score updated' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  createMatch = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> => {
+    try {
+      const newMatch = await this.matchService.createMatch(req.body);
+      return res.status(201).json(newMatch);
     } catch (error) {
       next(error);
     }

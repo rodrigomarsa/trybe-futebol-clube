@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, Router } from 'express';
+import { Router } from 'express';
 import UserModel from '../database/models/UserModel';
 import UserController from '../controllers/UserController';
 import UserService from '../services/UserService';
@@ -12,10 +12,6 @@ const userController = new UserController(userService);
 
 router
   .post('/login', verifyRequiredFields('login'), userController.login)
-  .get(
-    '/login/role',
-    (req: Request, res: Response, next: NextFunction) => ValidateToken.verifyToken(req, res, next),
-    userController.getRole,
-  );
+  .get('/login/role', ValidateToken.verifyToken, userController.getRole);
 
 export default router;

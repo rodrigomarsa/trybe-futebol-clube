@@ -1,8 +1,11 @@
-export interface IMatch {
-  homeTeamId: number;
+export interface IGoals {
   homeTeamGoals: number;
-  awayTeamId: number;
   awayTeamGoals: number;
+}
+
+export interface IMatch extends IGoals {
+  homeTeamId: number;
+  awayTeamId: number;
   inProgress: boolean;
 }
 
@@ -14,5 +17,6 @@ export default interface IMatchService {
   getAll(): Promise<IMatchWithId[] | void>;
   getByProgress(inProgress: boolean): Promise<IMatchWithId[] | void>;
   updateProgress(id: number): Promise<void>;
-  updateScore(id: number, data: object): Promise<void>;
+  updateScore(id: number, data: IGoals): Promise<void>;
+  createMatch(data: IMatch): Promise<IMatchWithId | void>
 }

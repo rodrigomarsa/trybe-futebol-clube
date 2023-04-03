@@ -5,7 +5,7 @@ import { IUserWithId } from '../services/interfaces/IUserService';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'jwt_secret';
 
-const configJWT: SignOptions = { algorithm: 'HS256', expiresIn: '10h' };
+const configJWT: SignOptions = { algorithm: 'HS256' };
 
 const createJwt = (payload: Omit<IUserWithId, | 'password' | 'email'>) =>
   jwt.sign(payload, JWT_SECRET, configJWT);

@@ -8,5 +8,5 @@ export const mockedUser = {
 }
 
 export const mockedToken = {
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJVc2VyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODAyMDY1MTUsImV4cCI6MTY4MDI0MjUxNX0.hloXa4wqvq0MmS3X2CFumc9psUsugWiKd2IFiwwokvk'
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJVc2VyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODA1NDQxOTB9.qZzSdIP_typl5nDdp1WqSQvT8aixu8aA4Uxshz0wQPA'
 }

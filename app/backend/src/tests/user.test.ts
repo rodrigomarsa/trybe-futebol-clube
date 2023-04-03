@@ -6,15 +6,9 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 import UserModel from '../database/models/UserModel';
-import UserService from '../services/UserService';
 
 import { Response } from 'superagent';
 import { mockedToken, mockedUser } from './mocks/user.mock';
-import UserController from '../controllers/UserController';
-
-const userService = new UserService(UserModel);
-const userController = new UserController(userService);
-const { token } = mockedToken;
 
 chai.use(chaiHttp);
 
@@ -109,12 +103,13 @@ describe('Consumo da rota /login', () => {
   
     it('retorna um tipo de usuário se o token for válido', async () => {
       sinon
-        .stub(userController, 'getRole');
+        .stub(jwt, 'verify')
+        .returns({ role: 'user' } as unknown as void);
 
       const chaiHttpResponse = await chai
          .request(app)
          .get('/login/role')
-         .set('Authorization', `${token}`);
+         .set('Authorization', 'token válido');
   
       expect(chaiHttpResponse.status).to.be.equal(200);
       expect(chaiHttpResponse.body).to.be.deep.equal({ role: 'user' });

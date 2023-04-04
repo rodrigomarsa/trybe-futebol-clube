@@ -15,8 +15,8 @@ export default class LeaderboardController implements ILeaderboardController {
     next: NextFunction,
   ): Promise<Response | void> => {
     try {
-      const teams = await this.leaderboardService.getHomeInfo();
-      return res.status(200).json(teams);
+      const teamsHome = await this.leaderboardService.getHomeInfo();
+      return res.status(200).json(teamsHome);
     } catch (error) {
       next(error);
     }
@@ -28,7 +28,20 @@ export default class LeaderboardController implements ILeaderboardController {
     next: NextFunction,
   ): Promise<Response | void> => {
     try {
-      const teams = await this.leaderboardService.getAwayInfo();
+      const teamsAway = await this.leaderboardService.getAwayInfo();
+      return res.status(200).json(teamsAway);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  getAllInfo = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> => {
+    try {
+      const teams = await this.leaderboardService.getAllInfo();
       return res.status(200).json(teams);
     } catch (error) {
       next(error);

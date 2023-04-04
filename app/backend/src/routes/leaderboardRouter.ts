@@ -9,6 +9,7 @@ const leaderboardController = new LeaderboardController(leaderboardService);
 
 router
   .get('/leaderboard/home', leaderboardController.getHomeInfo)
-  .get('/leaderboard/away', leaderboardController.getAwayInfo);
+  .get('/leaderboard/away', leaderboardController.getAwayInfo)
+  .get('/leaderboard', leaderboardController.getAllInfo);
 
 export default router;

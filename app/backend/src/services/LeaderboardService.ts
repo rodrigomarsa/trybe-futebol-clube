@@ -23,7 +23,7 @@ INNER JOIN
 WHERE
     m.in_progress = 0
 GROUP BY t.team_name
-ORDER BY totalVictories , goalsBalance , goalsFavor;`;
+ORDER BY totalPoints DESC, totalVictories DESC, goalsBalance DESC, goalsFavor DESC;`;
 
 export default class LeaderboardService implements ILeaderboardService {
   constructor(private _model = sequelize) {}

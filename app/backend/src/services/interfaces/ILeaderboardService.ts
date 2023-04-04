@@ -13,4 +13,5 @@ export interface ILeaderboard {
 
 export default interface ILeaderboardService {
   getHomeInfo(): Promise<ILeaderboard[] | void>;
+  getAwayInfo(): Promise<ILeaderboard[] | void>;
 }

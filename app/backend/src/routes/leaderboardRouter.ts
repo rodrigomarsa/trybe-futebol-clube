@@ -8,6 +8,7 @@ const leaderboardService = new LeaderboardService();
 const leaderboardController = new LeaderboardController(leaderboardService);
 
 router
-  .get('/leaderboard/home', leaderboardController.getHomeInfo);
+  .get('/leaderboard/home', leaderboardController.getHomeInfo)
+  .get('/leaderboard/away', leaderboardController.getAwayInfo);
 
 export default router;

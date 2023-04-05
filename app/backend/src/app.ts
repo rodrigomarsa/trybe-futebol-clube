@@ -30,6 +30,7 @@ class App {
   }
 
   public routes(): void {
+    this.app.get('/internal-error', (_req, _res) => { throw new Error(); });
     this.app.use(teamsRouter);
     this.app.use(userRouter);
     this.app.use(matchesRouter);

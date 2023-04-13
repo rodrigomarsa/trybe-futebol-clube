@@ -10,6 +10,7 @@ RUN npm install
 COPY . .
 # Sinalize que aplicação expõe a porta 3001
 EXPOSE 3001
+ARG EnvironmentVariable
 # Configurar os comandos para iniciar a aplicação de acordo com as boas práticas
 ENTRYPOINT ["npm", "run"]
 CMD ["start"]

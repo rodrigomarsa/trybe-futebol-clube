@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as cors from 'cors';
 import errorMiddleware from './middlewares/errorMiddleware';
 import teamsRouter from './routes/teamsRouter';
 import userRouter from './routes/userRouter';
@@ -25,6 +26,9 @@ class App {
       next();
     };
 
+    this.app.use(cors({
+      origin: '*',
+    }));
     this.app.use(express.json());
     this.app.use(accessControl);
   }
